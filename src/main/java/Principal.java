@@ -61,7 +61,7 @@ public class Principal {
         } while (opcion != 6);
     }
 
-    private static void agregarContacto() {
+    public static void agregarContacto() {
         System.out.println("Ingrese el nombre del contacto:");
         String nombre = scan.nextLine();
         System.out.println("Ingrese el número de teléfono del contacto:");
@@ -73,7 +73,7 @@ public class Principal {
         System.out.println("Contacto agregado correctamente.");
     }
 
-    private static void mostrarListaContactos() {
+    public static void mostrarListaContactos() {
         if (listaContactos.isEmpty()) {
             System.out.println("La lista de contactos está vacía.");
         } else {
@@ -85,7 +85,7 @@ public class Principal {
         }
     }
 
-    private static void buscarContacto() {
+    public static void buscarContacto() {
         System.out.println("Ingrese el nombre del contacto a buscar:");
         String nombreBuscar = scan.nextLine();
         boolean encontrado = false;
