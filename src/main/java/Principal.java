@@ -115,16 +115,17 @@ public class Principal {
         Contacto key = listaContactos.get(i);
         int j = i - 1;
 
+       if(j >= 0 && listaContactos.get(j).getNombre().compareToIgnoreCase(key.getNombre()) > 0){ 
         
-        while (j >= 0 && listaContactos.get(j).getNombre().compareToIgnoreCase(key.getNombre()) > 0) {
             listaContactos.set(j + 1, listaContactos.get(j));
             j = j - 1;
-        }
-        listaContactos.set(j + 1, key);
-       
-    } 
+            listaContactos.set(j + 1, key);
+        System.out.println("la lista esta vacia");
+        }else { 
         System.out.println("Lista de nombres ordenadas");
-    
+            }
+        
+    } 
     }
 
     public static void  ordenarPorTelefono() {
