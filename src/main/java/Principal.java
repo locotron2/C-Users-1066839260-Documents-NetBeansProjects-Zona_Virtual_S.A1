@@ -42,15 +42,19 @@ public class Principal {
                     break;
                 case 2:
                     mostrarListaContactos();
+                    
                     break;
                 case 3:
                     buscarContacto();
                     break;
                 case 4:
                     ordenarPorNombre();
+                    mostrarListaContactos();
+                   
                     break;
                 case 5:
                     ordenarPorTelefono();
+                     mostrarListaContactos();
                     break;
                 case 6:
                     System.out.println("Gracias por utilizar nuestra aplicacion");
@@ -92,8 +96,9 @@ public class Principal {
         for (int i = 0; i < listaContactos.size(); i++) {
             Contacto contacto = listaContactos.get(i);
             if (contacto.getNombre().equalsIgnoreCase(nombreBuscar)) {
+                
                 System.out.println("Contacto encontrado:");
-                System.out.println(contacto.getNombre() + " - " + contacto.getNumeroTelefono());
+                System.out.println((i + 1 )+"." +contacto.getNombre() + " - " + contacto.getNumeroTelefono());
                 encontrado = true;
                 
             }
@@ -104,33 +109,37 @@ public class Principal {
     }
 
     public static void ordenarPorNombre() {
-        if (listaContactos.isEmpty()) {
-            System.out.println("No hay contactos para ordenar.");
-            return;
-        }
+       
+    int n = listaContactos.size();
+    for (int i = 1; i < n; ++i) {
+        Contacto key = listaContactos.get(i);
+        int j = i - 1;
 
-        Collections.sort(listaContactos, (c1, c3) -> c1.getNombre().compareToIgnoreCase(c3.getNombre()));
-
-        System.out.println("Lista de Contactos ordenada por nombre:");
-        for (int i = 0; i < listaContactos.size(); i++) {
-            Contacto contacto = listaContactos.get(i);
-            System.out.println((i + 1) + ". " + contacto.getNombre() + " - " + contacto.getNumeroTelefono());
+        
+        while (j >= 0 && listaContactos.get(j).getNombre().compareToIgnoreCase(key.getNombre()) > 0) {
+            listaContactos.set(j + 1, listaContactos.get(j));
+            j = j - 1;
         }
+        listaContactos.set(j + 1, key);
+       
+    } 
+        System.out.println("Lista de nombres ordenadas");
+    
     }
 
-    public static void ordenarPorTelefono() {
-        if (listaContactos.isEmpty()) {
-            System.out.println("No hay contactos para ordenar.");
-            return;
+    public static void  ordenarPorTelefono() {
+        for (int i = 1; i < listaContactos.size(); i++) {
+            Contacto actual = listaContactos.get(i);
+            int j = i - 1;
+            while (j >= 0 && listaContactos.get(j).getNumeroTelefono() > actual.getNumeroTelefono()) {
+                listaContactos.set(j + 1, listaContactos.get(j));
+                j--;
+            }
+            listaContactos.set(j + 1, actual);
         }
-
-        Collections.sort(listaContactos, (c1, c2) -> Integer.compare(c1.getNumeroTelefono(), c2.getNumeroTelefono()));
-
-        System.out.println("Lista de telefonos ordenada por nombres:");
-        for (int i = 0; i < listaContactos.size(); i++) {
-            Contacto contacto = listaContactos.get(i);
-            System.out.println((i + 1) + ". " + contacto.getNombre() + " - " + contacto.getNumeroTelefono());
-        }
+        System.out.println("Lista de contactos ordenada por números telefónicos (ascendente):");
+        
     }
 }
+   
 
